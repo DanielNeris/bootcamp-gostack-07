@@ -1,107 +1,55 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { MdAddShoppingCart } from 'react-icons/md';
+import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
 import { ProductList } from './styles';
 
-export default function Home() {
-  return (
-    <ProductList>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
+export default class Home extends Component {
+  constructor(props) {
+    super(props);
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
+    this.state = {
+      products: [],
+    };
+  }
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
+  componentDidMount() {
+    this.loadProducts();
+  }
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
+  loadProducts = async () => {
+    const response = await api.get('/products');
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormatted: formatPrice(product.price),
+    }));
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
+    this.setState({ products: data });
+  };
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
+  render() {
+    const { products } = this.state;
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
+    return (
+      <ProductList>
+        {products.map(item => (
+          <li key={item.id}>
+            <img src={item.image} alt={item.title} />
+            <strong>{item.title}</strong>
+            <span>{item.priceFormatted}</span>
 
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
+            <button type="button">
+              <div>
+                <MdAddShoppingCart size={36} color="#fff" /> 12
+              </div>
 
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-nike-sb-check-solar-cnvs-masculino/26/D12-2759-026/D12-2759-026_zoom1.jpg"
-          alt="shoes"
-        />
-        <strong>Tênis do tênis</strong>
-        <span>R$199,00</span>
-
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={36} color="#fff" /> 12
-          </div>
-
-          <span>ADICIONAR AO CARRINHO</span>
-        </button>
-      </li>
-    </ProductList>
-  );
+              <span>ADICIONAR AO CARRINHO</span>
+            </button>
+          </li>
+        ))}
+      </ProductList>
+    );
+  }
 }
