@@ -7,7 +7,15 @@ export function addToCart(product) {
 
 export function removeFromCart(id) {
   return {
-    type: 'R@cart/REMOVE',
+    type: '@cart/REMOVE',
     id,
+  };
+}
+
+export function updateAmount(id, amount) {
+  return {
+    type: '@cart/UPDATE_AMOUNT',
+    id,
+    amount,
   };
 }
