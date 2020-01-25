@@ -24,7 +24,7 @@
 
 ## 💻 Project
 
-The DevMaps is an application to search for developers around you for technologies.
+The RocketShoes is an application that simulates an e-commerce to buy tennis shoes.
 
 ## :rocket: Technology
 
