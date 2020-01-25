@@ -41,7 +41,7 @@ Through command line:
 
 ```bash
 # Clone this repositori
-$ git https://github.com/DanielNeris/semanaomnistack10.git
+$ https://github.com/DanielNeris/bootcamp-gostack-07.git
 # Go to backend
 $ cd backend
 # Install dependences
