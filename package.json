@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
     "history": "^4.9.0",
     "immer": "^3.2.0",
     "json-server": "^0.15.1",
@@ -24,11 +25,10 @@
     "styled-components": "^4.3.2"
   },
   "scripts": {
-    "start": "yarn backend & react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "backend": "json-server server.json -p 3333"
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": "react-app"
