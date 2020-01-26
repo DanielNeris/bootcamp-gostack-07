@@ -51,7 +51,10 @@ class Home extends Component {
             <strong>{item.title}</strong>
             <span>{item.priceFormatted}</span>
 
-            <button type="button" onClick={() => this.handleAddProduct(item.id)}>
+            <button
+              type="button"
+              onClick={() => this.handleAddProduct(item.id)}
+            >
               <div>
                 <MdAddShoppingCart size={36} color="#fff" />
                 {amount[item.id] || 0}
